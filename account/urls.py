@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^new-login/$', auth_views.login, {"template_name": "account/login.html"}),
     #url(r'^logout/$', auth_views.logout, name='user_logout'),
     url(r'^logout/$', auth_views.logout,{"template_name": "account/logout.html"}, name='user_logout'),
+    url(r'^register/$', views.register, name="user_register"),
 ]
