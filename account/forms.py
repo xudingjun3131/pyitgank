@@ -1,10 +1,11 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import UserProfile
 
 #定义登陆表单
 class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '用户名', }))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '密码', }))
 
 #定义注册表单
 class RegistrationForm(forms.ModelForm):
@@ -17,5 +18,11 @@ class RegistrationForm(forms.ModelForm):
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
-            raise forms.ValidationError("passwrods does not match.")
+            raise forms.ValidationError("passwords does not match.")
         return cd['password2']
+
+#定义注册额外信息
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ("phone", "birth")
