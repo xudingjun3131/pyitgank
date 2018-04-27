@@ -10,29 +10,24 @@
             </div>
             <h3>欢迎注册 H+</h3>
             <p>创建一个H+新账户</p>
-            <form class="m-t" role="form" action="{% url 'account:user_login' %}">
+            <form class="m-t" role="form" action="." method="post">
+                {% csrf_token %}
                 <div class="form-group">
-                    <label for="{{ form.username.id_for_label }}" class="col-md-5 control-label" style="color: red">昵称：</label>
                     {{ form.username }}
                 </div>
                 <div class="form-group">
-                    <label for="{{ form.username.id_for_label }}" class="col-md-5 control-label" style="color: red">邮箱：</label>
                     {{ form.email }}
                 </div>
                 <div class="form-group">
-                    <label for="{{ form.username.id_for_label }}" class="col-md-5 control-label" style="color: red">密码：</label>
                     {{ form.password }}
                 </div>
                 <div class="form-group">
-                    <label for="{{ form.username.id_for_label }}" class="col-md-5 control-label" style="color: red">确认：</label>
                     {{ form.password2 }}
                 </div>
                 <div class="form-group">
-                    <label for="{{ form.username.id_for_label }}" class="col-md-5 control-label" style="color: red">生日：</label>
                     {{ profile.birth }}
                 </div>
                 <div class="form-group">
-                    <label for="{{ form.username.id_for_label }}" class="col-md-5 control-label" style="color: red">电话：</label>
                     {{ profile.phone }}
                 </div>
                 <div class="form-group text-left">
@@ -41,7 +36,7 @@
                             <input type="checkbox"><i></i> 我同意注册协议</label>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">注 册</button>
+                <button type="submit" class="btn btn-primary block full-width m-b" value="register">注 册</button>
                 <p class="text-muted text-center"><small>已经有账户了？</small><a href="{% url 'account:user_login' %}login.html">点此登录</a>
                 </p>
                 </form>

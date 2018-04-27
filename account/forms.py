@@ -9,11 +9,15 @@ class LoginForm(forms.Form):
 
 #定义注册表单
 class RegistrationForm(forms.ModelForm):
-    password = forms.CharField(label="Password", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Confirm Password", widget=forms.PasswordInput)
+    password = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '请输入密码', }))
+    password2 = forms.CharField(label="Confirm Password", widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '请再次输入密码', }))
     class Meta:
         model = User
         fields = ("username", "email")
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '请输入用户名', }),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': '请输入邮箱地址', }),
+        }
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -26,3 +30,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ("phone", "birth")
+        widgets = {
+            'phone': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '请输入手机号码', }),
+            'birth': forms.DateInput(attrs={'class': 'form-control', 'placeholder': '请输入出生日期', }),
+        }
