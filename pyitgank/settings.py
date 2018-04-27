@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',    #增加blog应用
     'account',   #增加用户登录注册模块
+    'password_reset',   #增加密码重制模块
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,12 @@ STATICFILES_DIRS = (
 )
 
 LOGIN_REDIRECT_URL = '/blog/'
+
+#配置邮箱
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.exmail.qq.com'
+EMAIL_HOST_USER = "admin@itgank.com"
+EMAIL_HOST_PASSWORD = "Xudingjun@3131"
+EMAIL_PORT = 25
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "admin@itgank.com"
